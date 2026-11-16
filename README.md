@@ -12,3 +12,4 @@ Série de terror em formato short-form (TikTok / Reels / Shorts) dividida em 2 p
 * `CHARACTERS.md` -> Ficha técnica visual de consistência dos personagens e cenário.
 * `PART_1_SCRIPT.md` -> Roteiro detalhado da Parte 1 (A Noite de São Paulo).
 * `PART_2_SCRIPT.md` -> Roteiro detalhado da Parte 2 (O Cerco na Galeria) com o encaixe perfeito.
+* `producao/` -> Produção do vídeo (3D procedural + vozes neurais + efeitos sonoros). Veja `producao/README.md`.

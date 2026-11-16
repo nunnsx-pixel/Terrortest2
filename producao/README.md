@@ -75,4 +75,4 @@ node renderizar.cjs --part 2 --from 0 --to 1800 --fps 30 --w 720 --h 1280 --out 
 - **Tempos das falas e dos efeitos**: `audio/mixar.py` (funções `parte1` e `parte2`); a cena lê os mesmos
   tempos via `cues_parteN.json`.
 - **Texto das falas e atuação**: `audio/vozes.py` (dicionário `LINES`).
-- **Resolução**: `--w 1080 --h 1920` (≈ 4× mais lento).
+- **Resolução**: `--w 1080 --h 1920` (≈ 4× mais lento; o MP4 sai maior).

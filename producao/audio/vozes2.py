@@ -4,7 +4,7 @@ Mudanças em relação à v1 (Kokoro + efeitos pesados):
   * sem vocoder de sussurro, sem vibrato/saturação/AM, sem aceleração artificial (1,2–1,3×);
   * fala dividida em frases, com pausas humanas (reticências, pontos, exclamações) e respiração;
   * emoção por escolhas leves: ritmo, nível, um pequeno ajuste de tom, ar na voz e compressão suave;
-  * vozes distintas e nativas: Lucas = M1, Marcos = M2, Clara = F2 (Lucas infectado = M1 mais grave e lento).
+  * vozes distintas e nativas: Lucas = M1, Marcos = M2, Clara = F2 (Lucas infectado = M1 mais grave e lento). Ordem dos sids: 0-4 = F1-F5, 5-9 = M1-M5.
 
 Uso (no venv com sherpa-onnx >= 2): python vozes2.py <pasta_modelo_supertonic> <pasta_saida>
 Saída: <pasta_saida>/<id>.wav (mono 48 kHz, seco) e vozes.json (duração e envelope 60 Hz) — mesmo formato da v1.
@@ -21,7 +21,9 @@ import soundfile as sf
 import dsp
 from dsp import SR
 
-VOZES = {"lucas": 0, "marcos": 1, "clara": 6, "lucas_zumbi": 0}   # M1, M2, F2
+# Ordem real das vozes no voice.bin do Supertonic (verificada medindo o F0 com Praat):
+#   sids 0-4 = F1..F5 (femininas, F0 ~160-200 Hz)  |  sids 5-9 = M1..M5 (masculinas, F0 ~85-125 Hz)
+VOZES = {"lucas": 5, "marcos": 6, "clara": 1, "lucas_zumbi": 5}   # Lucas = M1, Marcos = M2 (mais grave), Clara = F2
 BASE_SPEED = 1.12                                                  # ≈ 15 caracteres/s (já com pausas): conversa rápida, mas humana
 NUM_STEPS = 10
 

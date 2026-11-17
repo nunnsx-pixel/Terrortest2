@@ -109,18 +109,18 @@ def breaths(mx, t0, t1, every, g=0.3):
 def parte1(vdir):
     mx = Mix(60.0)
     M = mx.marks
-    M.update(alarm_start=0.45, baque=1.90, whisper=2.60, crouch=4.4, radio=7.8, viaduto_look=23.4,
+    M.update(alarm_start=0.45, baque=1.90, whisper=2.60, crouch=4.4, radio=9.0, viaduto_look=25.0,
              walker_visible=27.0, recognize=36.0, head_snap=46.4, creak=50.0, whip_up=50.3, glass=51.2,
              tiles=51.6, buckle=53.2, cut=57.95, end_card=58.3)
     # ------------------------------------------------------------------ vozes
-    mx.voice_line(vdir, "p1_lucas_sussurro", 2.60, 1.0, 0.0, wet=0.12)
-    mx.voice_line(vdir, "p1_clara_radio", 8.30, 0.9, -0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_marcos_infestada", 15.90, 0.95, 0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_lucas_viaduto", 24.00, 0.9, 0.0, wet=0.12)
-    mx.voice_line(vdir, "p1_clara_entregador", 36.00, 0.95, -0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_marcos_visor", 42.40, 1.0, 0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_lucas_cuidado1", 50.75, 1.15, 0.0, wet=0.2)
-    mx.voice_line(vdir, "p1_lucas_cuidado2", 55.65, 1.15, 0.0, wet=0.2)
+    mx.voice_line(vdir, "p1_lucas_sussurro", 2.60, 0.95, 0.0, wet=0.12)
+    mx.voice_line(vdir, "p1_clara_radio", 9.50, 0.85, -0.3, wet=0.14)
+    mx.voice_line(vdir, "p1_marcos_infestada", 18.20, 0.78, 0.3, wet=0.14)
+    mx.voice_line(vdir, "p1_lucas_viaduto", 24.70, 0.9, 0.0, wet=0.12)
+    mx.voice_line(vdir, "p1_clara_entregador", 36.00, 0.85, -0.3, wet=0.14)
+    mx.voice_line(vdir, "p1_marcos_visor", 42.40, 1.1, 0.3, wet=0.14)
+    mx.voice_line(vdir, "p1_lucas_cuidado1", 50.75, 1.4, 0.0, wet=0.2)
+    mx.voice_line(vdir, "p1_lucas_cuidado2", 55.65, 1.35, 0.0, wet=0.2)
     # --------------------------------------------------------------- ambiência
     mx.add("amb", sfx.city_air(60.0), 0, 0.55, 0.0, env="st", wet=0.0)
     mx.add("amb", sfx.lamp_hum(60.0, flicker=True), 0, 0.30, -0.35, env="st", wet=0.05)
@@ -138,7 +138,7 @@ def parte1(vdir):
     mx.add("sfx", sfx.cloth(0.7), 4.6, 0.6)
     mx.add("sfx", sfx.cloth(0.5), 5.7, 0.4, 0.2)
     # rádio de pilha de Clara chiando até morrer
-    mx.add("sfx", sfx.radio_static(1.9, die_at=0.85), 7.8, 0.45, -0.4, env="st", wet=0.1)
+    mx.add("sfx", sfx.radio_static(1.9, die_at=0.85), 9.0, 0.45, -0.4, env="st", wet=0.1)
     # gemidos longínquos
     mx.add("sfx", sfx.horde(7.0, 8, 60, 120), 17.0, 0.18, 0.5, dist=0.9)
     mx.add("sfx", sfx.groan(2.0, 82, "o"), 21.8, 0.35, 0.65, dist=0.7)
@@ -183,13 +183,13 @@ def parte2(vdir):
              door_reached=35.0, clara_grab=36.55, chain_rattle=45.3, lucas_grab=47.0, phone_drop=49.3,
              black=49.75, reboot=52.1, face=52.4, cut=59.82)
     # ------------------------------------------------------------------ vozes
-    mx.voice_line(vdir, "p2_lucas_rua", 0.05, 1.1, 0.0, wet=0.2)
-    mx.voice_line(vdir, "p2_clara_escada", 6.70, 1.0, -0.3, env="ga", wet=0.26)
-    mx.voice_line(vdir, "p2_marcos_socorro", 15.40, 1.15, 0.45, env="ga", wet=0.3)
-    mx.voice_line(vdir, "p2_lucas_chuta", 18.60, 1.1, 0.0, env="ga", wet=0.26)
-    mx.voice_line(vdir, "p2_clara_vaiembora", 37.20, 1.15, -0.4, env="ga", wet=0.3)
-    mx.voice_line(vdir, "p2_lucas_portao", 42.40, 1.15, 0.0, env="ga", wet=0.26)
-    mx.voice_line(vdir, "p2_lucas_zumbi", 53.30, 1.0, 0.0, env="ga", wet=0.4)
+    mx.voice_line(vdir, "p2_lucas_rua", 0.05, 1.35, 0.0, wet=0.2)
+    mx.voice_line(vdir, "p2_clara_escada", 6.70, 0.95, -0.3, env="ga", wet=0.26)
+    mx.voice_line(vdir, "p2_marcos_socorro", 15.40, 1.1, 0.45, env="ga", wet=0.3)
+    mx.voice_line(vdir, "p2_lucas_chuta", 18.90, 1.35, 0.0, env="ga", wet=0.26)
+    mx.voice_line(vdir, "p2_clara_vaiembora", 37.20, 1.7, -0.4, env="ga", wet=0.3)
+    mx.voice_line(vdir, "p2_lucas_portao", 42.70, 1.5, 0.0, env="ga", wet=0.26)
+    mx.voice_line(vdir, "p2_lucas_zumbi", 52.15, 0.9, 0.0, env="ga", wet=0.4)
     # --------------------------------------------------------------- ambiência
     air = sfx.city_air(60.0)
     amb_env = np.interp(np.arange(len(air)) / SR, [0, 2.0, 3.6, 60], [1, 1, 0.0, 0.0]).astype(np.float32)

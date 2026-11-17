@@ -21,9 +21,10 @@ roteiro ─┬─ audio/vozes.py   TTS neural (Kokoro-82M, PT-BR) + atuação po
 ```
 
 ### Áudio (`audio/`)
-- **Vozes** — três vozes neurais distintas: Lucas = `pm_alex`, Marcos = `pm_santa`, Clara = `pf_dora`.
-  A entonação vem de efeitos aplicados por fala: sussurro (vocoder de ruído), voz trêmula (vibrato),
-  choro, grito (saturação + brilho), esforço/fôlego e, para o Lucas infectado, voz grave, rouca e granulada.
+- **Vozes (v2, `vozes2.py`)** — Supertonic 3 (TTS neural local, PT-BR): Lucas = `M1`, Marcos = `M2`, Clara = `F2`.
+  Ritmo natural (~15 caracteres/s), falas divididas em frases com pausas humanas nas reticências, e atuação
+  leve: voz contida nas falas baixas, ar na voz, ajuste sutil de tom e esforço nos gritos. O Lucas infectado
+  usa a mesma voz, mais lenta e grave. A v1 (`vozes.py`, Kokoro + efeitos pesados) soava artificial e foi substituída.
 - **Efeitos** — alarme de carro, batida metálica, grito abafado, chiado de rádio, passos arrastados,
   estalos de ossos, vidro estilhaçando, telhas, chapa de zinco cedendo, balcão arrastado, corrente,
   escada rolante, multidão, batimento cardíaco, risers, drone, celular caindo, etc.
@@ -48,14 +49,13 @@ Three.js rodando em Chromium (WebGL por software), renderização determinístic
 
 ```bash
 # 1) dependências
-pip install kokoro-onnx soundfile scipy numpy
+pip install sherpa-onnx soundfile scipy numpy      # (>= 2.0, com suporte a Supertonic)
 (cd cena && npm install)                 # three.js
-# modelos do Kokoro (≈350 MB): kokoro-v1.0.onnx e voices-v1.0.bin
-#   https://github.com/thewh1teagle/kokoro-onnx/releases/tag/model-files-v1.0
+# modelo de voz (≈130 MB, MIT): sherpa-onnx-supertonic-3-tts-int8-2026-05-11.tar.bz2
+#   https://github.com/k2-fsa/sherpa-onnx/releases/tag/tts-models
 
 # 2) áudio
-export KOKORO_DIR=/caminho/dos/modelos
-python3 audio/vozes.py  /tmp/build/vozes
+python3 audio/vozes2.py /caminho/sherpa-onnx-supertonic-3-tts-int8-2026-05-11 /tmp/build/vozes
 python3 audio/mixar.py 1 /tmp/build/vozes /tmp/build/audio
 python3 audio/mixar.py 2 /tmp/build/vozes /tmp/build/audio
 cp /tmp/build/audio/cues_parte*.json cena/
@@ -74,5 +74,5 @@ node renderizar.cjs --part 2 --from 0 --to 1800 --fps 30 --w 720 --h 1280 --out 
 - **Relógio do HUD**: `cena/js/story.js` (`clock: '04:15 AM'`) e `cena/js/part2.js` (`'04:22 AM'` / `'04:23 AM'`).
 - **Tempos das falas e dos efeitos**: `audio/mixar.py` (funções `parte1` e `parte2`); a cena lê os mesmos
   tempos via `cues_parteN.json`.
-- **Texto das falas e atuação**: `audio/vozes.py` (dicionário `LINES`).
+- **Texto das falas e atuação**: `audio/vozes2.py` (dicionário `LINES`).
 - **Resolução**: `--w 1080 --h 1920` (≈ 4× mais lento; o MP4 sai maior).

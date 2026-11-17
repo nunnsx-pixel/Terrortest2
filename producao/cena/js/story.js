@@ -77,12 +77,12 @@ export function createStory(ctx) {
     K(6.5, [-7.1, 1.02, -8.1, -2.0, 1.0, -7.6, 68, 0.8, 0, 1.0, 4]),
     K(8.1, [-7.2, 1.0, -8.5, -6.9, 0.95, -7.0, 68, 0.5, 0, 1.0, 1.4]),
     K(11.0, [-7.2, 1.0, -8.5, -6.9, 0.98, -7.0, 66, 0.4, -0.02, 1.0, 1.4]),
-    K(15.0, [-7.15, 1.0, -8.5, -6.9, 1.0, -7.0, 66, 0.4, 0.02, 1.0, 1.4]),
-    K(15.9, [-7.2, 1.0, -8.5, -5.8, 0.97, -7.6, 68, 0.9, 0, 1.0, 2.0], { ease: true }),
-    K(18.5, [-7.2, 1.0, -8.5, -5.8, 1.0, -7.6, 66, 0.4, 0.03, 1.0, 2.0]),
-    K(21.0, [-7.2, 1.02, -8.5, -5.8, 0.98, -7.6, 66, 0.45, 0, 1.0, 2.0]),
-    K(23.6, [-7.0, 1.28, -8.5, 0.4, 2.2, -80, 70, 0.7, 0, 1.0, 40]),
-    K(26.5, [-6.9, 1.32, -8.5, 0.6, 1.9, -76, 70, 0.5, 0, 1.5, 55]),
+    K(17.4, [-7.15, 1.0, -8.5, -6.9, 1.0, -7.0, 66, 0.4, 0.02, 1.0, 1.4]),
+    K(18.3, [-7.2, 1.0, -8.5, -5.8, 0.97, -7.6, 68, 0.9, 0, 1.0, 2.0], { ease: true }),
+    K(21.0, [-7.2, 1.0, -8.5, -5.8, 1.0, -7.6, 66, 0.4, 0.03, 1.0, 2.0]),
+    K(24.0, [-7.2, 1.02, -8.5, -5.8, 0.98, -7.6, 66, 0.45, 0, 1.0, 2.0]),
+    K(25.4, [-7.0, 1.28, -8.5, 0.4, 2.2, -80, 70, 0.7, 0, 1.0, 40]),
+    K(28.0, [-6.9, 1.32, -8.5, 0.6, 1.9, -76, 70, 0.5, 0, 1.5, 55]),
     K(34.0, [-6.8, 1.26, -8.5, 1.0, 1.7, -62, 70, 0.55, 0, 4.0, 52]),
     K(41.0, [-6.8, 1.2, -8.5, 1.3, 1.6, -52, 70, 0.7, 0, 6.2, 44]),
     K(46.2, [-6.8, 1.2, -8.5, 1.6, 1.6, -48, 70, 0.9, 0, 8.0, 40]),
@@ -263,14 +263,14 @@ export function createStory(ctx) {
     {
       let p = moving ? crouchWalk(t, 0.4) : poseCrouch(t, kC[3], 0.4);
       // rádio de pilha junto ao ouvido e depois mostrando ao Lucas
-      const radioT = remap(t, 7.0, 9.5);
+      const radioT = remap(t, 8.6, 10.4);
       p.shL = [lerp(p.shL[0], -2.2, radioT), 0, lerp(p.shL[2], 0.5, radioT)]; p.elL = [lerp(p.elL[0], -1.9, radioT), 0, 0];
       const spk = voiceEnv('p1_clara_radio', t) ; p.jaw = spk * 0.5; p.head = [p.head[0] + 0.05 * spk, p.head[1], p.head[2]];
       const spk2 = voiceEnv('p1_clara_entregador', t); p.jaw = Math.max(p.jaw, spk2 * 0.6);
       if (t > 36 && t < 40.5) { p.shR = [-1.0, 0, -0.3]; p.elR = [-1.8, 0, 0]; p.head[0] += 0.1; } // mão na boca
       applyPose(aC, p);
-      aC.j.radio.visible = t < 15;
-      aC.j.radio.userData.led.visible = t < 8.6 || (t > 7.6 && t < 8.6);
+      aC.j.radio.visible = t < 18;
+      aC.j.radio.userData.led.visible = t < 9.9;
     }
     setActor(aM, kM[0], 0, kM[1], deg(kM[2]));
     {
@@ -385,7 +385,7 @@ export function createStory(ctx) {
     scene.background = new THREE.Color(0x05080d);
     hemi.intensity = 0.42; moon.intensity = 0.28;
     // ---- braço de Lucas apontando (24,2 → 27,0)
-    const point = sstep(23.9, 24.4, t) * (1 - sstep(26.6, 27.2, t));
+    const point = sstep(25.3, 25.8, t) * (1 - sstep(28.0, 28.6, t));
     povArm(cf, point, 0.1);
 
     // ---- parâmetros de pós
@@ -406,7 +406,7 @@ export function createStory(ctx) {
 
   // caixa de foco do app de câmera
   function focusBox(t) {
-    const pts = [[2.4, 0.5, 0.45, 0.9], [6.8, 0.52, 0.5, 0.8], [8.2, 0.34, 0.52, 0.8], [15.9, 0.65, 0.5, 0.8], [24.5, 0.5, 0.42, 0.8], [47, 0.5, 0.44, 0.9], [51, 0.5, 0.35, 0.7]];
+    const pts = [[2.4, 0.5, 0.45, 0.9], [6.8, 0.52, 0.5, 0.8], [8.2, 0.34, 0.52, 0.8], [18.3, 0.65, 0.5, 0.8], [26.0, 0.5, 0.42, 0.8], [47, 0.5, 0.44, 0.9], [51, 0.5, 0.35, 0.7]];
     for (const [tt, x, y, d] of pts) if (Math.abs(t - tt) < d) return { x, y, k: 1 - Math.abs(t - tt) / d };
     return null;
   }

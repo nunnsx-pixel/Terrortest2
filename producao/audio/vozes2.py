@@ -48,7 +48,7 @@ LINES = {
         text="rua toda! Trava a porta! Empurra o balcão da lotérica aqui na frente para bloquear!"),
     "p2_clara_escada": dict(who="clara", speed=1.0, gain_db=0, ar=0.12, grito=0.3, pitch=0.5,
         text="Lucas... não adianta barricar a entrada da rua. Olha ali em cima, na escada rolante desligada!"),
-    "p2_marcos_socorro": dict(who="marcos", speed=1.1, gain_db=3, grito=1.0, ar=0.12, pitch=1.4,
+    "p2_marcos_socorro": dict(who="marcos", speed=1.0, gain_db=3, grito=0.8, ar=0.12, pitch=0.8,
         text="Socorro! Eles já tavam escondidos aqui dentro! Me puxa!"),
     "p2_lucas_chuta": dict(who="lucas", speed=1.08, gain_db=3, grito=0.8, ar=0.14, pitch=0.8,
         text="Marcos, chuta a mão dele! Clara, corre para o corredor dos fundos, sentido estacionamento!"),

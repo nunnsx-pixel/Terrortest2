@@ -67,7 +67,7 @@ class Mix:
         v_env = dsp.env_follow(self.voice.mean(axis=1), 40)
         amb = dsp.duck_fast(self.amb, v_env, 0.5, 0.04, 0.5)
         mus = dsp.duck_fast(self.mus, v_env, 0.6, 0.04, 0.6)
-        sf_ = dsp.duck_fast(self.sfx, v_env, 0.18, 0.03, 0.3)
+        sf_ = dsp.duck_fast(self.sfx, v_env, 0.36, 0.03, 0.3)
         r_st = dsp.stereo_reverb(self.send_st, IR_STREET_L, IR_STREET_R, 1.0)[: self.n] * 0.9
         r_ga = dsp.stereo_reverb(self.send_ga, IR_GAL_L, IR_GAL_R, 1.0)[: self.n] * 0.9
         r_st = np.pad(r_st, ((0, max(0, self.n - len(r_st))), (0, 0)))
@@ -115,12 +115,12 @@ def parte1(vdir):
     # ------------------------------------------------------------------ vozes
     mx.voice_line(vdir, "p1_lucas_sussurro", 2.60, 0.95, 0.0, wet=0.12)
     mx.voice_line(vdir, "p1_clara_radio", 9.50, 0.85, -0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_marcos_infestada", 18.20, 0.78, 0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_lucas_viaduto", 24.70, 0.9, 0.0, wet=0.12)
+    mx.voice_line(vdir, "p1_marcos_infestada", 18.20, 0.9, 0.3, wet=0.14)
+    mx.voice_line(vdir, "p1_lucas_viaduto", 24.70, 1.0, 0.0, wet=0.12)
     mx.voice_line(vdir, "p1_clara_entregador", 36.00, 0.85, -0.3, wet=0.14)
     mx.voice_line(vdir, "p1_marcos_visor", 42.40, 1.1, 0.3, wet=0.14)
     mx.voice_line(vdir, "p1_lucas_cuidado1", 50.75, 1.4, 0.0, wet=0.2)
-    mx.voice_line(vdir, "p1_lucas_cuidado2", 55.65, 1.35, 0.0, wet=0.2)
+    mx.voice_line(vdir, "p1_lucas_cuidado2", 55.50, 1.6, 0.0, wet=0.2)
     # --------------------------------------------------------------- ambiência
     mx.add("amb", sfx.city_air(60.0), 0, 0.55, 0.0, env="st", wet=0.0)
     mx.add("amb", sfx.lamp_hum(60.0, flicker=True), 0, 0.30, -0.35, env="st", wet=0.05)
@@ -185,10 +185,10 @@ def parte2(vdir):
     # ------------------------------------------------------------------ vozes
     mx.voice_line(vdir, "p2_lucas_rua", 0.05, 1.35, 0.0, wet=0.2)
     mx.voice_line(vdir, "p2_clara_escada", 6.70, 0.95, -0.3, env="ga", wet=0.26)
-    mx.voice_line(vdir, "p2_marcos_socorro", 15.40, 1.1, 0.45, env="ga", wet=0.3)
-    mx.voice_line(vdir, "p2_lucas_chuta", 18.90, 1.35, 0.0, env="ga", wet=0.26)
+    mx.voice_line(vdir, "p2_marcos_socorro", 15.40, 1.55, 0.45, env="ga", wet=0.3)
+    mx.voice_line(vdir, "p2_lucas_chuta", 18.90, 1.55, 0.0, env="ga", wet=0.26)
     mx.voice_line(vdir, "p2_clara_vaiembora", 37.20, 1.7, -0.4, env="ga", wet=0.3)
-    mx.voice_line(vdir, "p2_lucas_portao", 42.70, 1.5, 0.0, env="ga", wet=0.26)
+    mx.voice_line(vdir, "p2_lucas_portao", 42.70, 1.7, 0.0, env="ga", wet=0.26)
     mx.voice_line(vdir, "p2_lucas_zumbi", 52.15, 0.9, 0.0, env="ga", wet=0.4)
     # --------------------------------------------------------------- ambiência
     air = sfx.city_air(60.0)
@@ -222,11 +222,11 @@ def parte2(vdir):
     mx.add("sfx", sfx.bone_clicks(10, 3.0, seed=77), 13.8, 0.4, 0.2, env="ga", wet=0.3)
     # Marcos é puxado
     mx.add("sfx", sfx.cloth(0.6), 15.2, 0.7, 0.4)
-    mx.add("sfx", sfx.wet_squelch(1.4, 8), 17.0, 0.5, 0.5, env="ga")
-    mx.add("sfx", sfx.fabric_rip(0.9), 17.4, 0.7, 0.5, env="ga")
+    mx.add("sfx", sfx.wet_squelch(1.4, 8), 17.0, 0.25, 0.5, env="ga")
+    mx.add("sfx", sfx.fabric_rip(0.9), 17.4, 0.3, 0.5, env="ga")
     mx.add("sfx", sfx.scream_full(1.3, 780, muffle=3500), 19.2, 0.9, 0.7, dist=0.4, env="ga")
-    mx.add("sfx", sfx.groan(1.8, 85, "a"), 15.8, 0.7, 0.45, env="ga")
-    mx.add("sfx", sfx.groan(1.6, 100, "o"), 16.6, 0.7, 0.2, env="ga")
+    mx.add("sfx", sfx.groan(1.8, 85, "a"), 15.8, 0.45, 0.45, env="ga")
+    mx.add("sfx", sfx.groan(1.6, 100, "o"), 16.6, 0.4, 0.2, env="ga")
     # ------------------------------------------------------------ fuga
     steps(mx, 22.9, 12.2, 3.2, "dry", 41, g=0.8, env="ga")
     breaths(mx, 22.9, 35.0, 0.5, 0.36)
@@ -264,9 +264,9 @@ def parte2(vdir):
     mx.add("sfx", sfx.groan(1.6, 80, "o"), 50.9, 0.6, 0.35, env="ga")
     # -------------------------------------- religa (bateria 0%) e a revelação
     mx.add("sfx", sfx.lowbat_beep(), 52.0, 0.4, 0.0, wet=0.0)
-    mx.add("sfx", sfx.reboot_chime(), 52.2, 0.5, 0.0, wet=0.05)
-    mx.add("mus", sfx.eye_shine_pad(7.4), 52.4, 0.35, 0.0, env="ga", wet=0.5)
-    mx.add("sfx", sfx.groan(3.0, 62, "o", rasp=0.5), 52.7, 0.3, -0.2, env="ga", wet=0.5)
+    mx.add("sfx", sfx.reboot_chime(), 52.2, 0.28, 0.0, wet=0.05)
+    mx.add("mus", sfx.eye_shine_pad(7.4), 52.4, 0.2, 0.0, env="ga", wet=0.5)
+    mx.add("sfx", sfx.groan(3.0, 62, "o", rasp=0.5), 52.7, 0.14, -0.2, env="ga", wet=0.5)
     mx.add("sfx", sfx.bone_clicks(7, 4.5, seed=91), 54.5, 0.18, 0.3, env="ga", wet=0.4)
     mx.add("sfx", sfx.static_burst(0.12), 59.6, 0.5, 0.0, wet=0.0)
     mx.cut_after(59.82)
@@ -295,7 +295,7 @@ def _render_with_window(self, out_wav):
     v_env = dsp.env_follow(self.voice.mean(axis=1), 40)
     amb = dsp.duck_fast(self.amb, v_env, 0.5, 0.04, 0.5)
     mus = dsp.duck_fast(self.mus, v_env, 0.6, 0.04, 0.6)
-    sf_ = dsp.duck_fast(self.sfx, v_env, 0.18, 0.03, 0.3)
+    sf_ = dsp.duck_fast(self.sfx, v_env, 0.36, 0.03, 0.3)
     r_st = dsp.stereo_reverb(self.send_st, IR_STREET_L, IR_STREET_R, 1.0)[: self.n] * 0.9
     r_ga = dsp.stereo_reverb(self.send_ga, IR_GAL_L, IR_GAL_R, 1.0)[: self.n] * 0.9
     r_st = np.pad(r_st, ((0, max(0, self.n - len(r_st))), (0, 0)))

@@ -113,14 +113,14 @@ def parte1(vdir):
              walker_visible=27.0, recognize=36.0, head_snap=46.4, creak=50.0, whip_up=50.3, glass=51.2,
              tiles=51.6, buckle=53.2, cut=57.95, end_card=58.3)
     # ------------------------------------------------------------------ vozes
-    mx.voice_line(vdir, "p1_lucas_sussurro", 2.60, 0.95, 0.0, wet=0.12)
-    mx.voice_line(vdir, "p1_clara_radio", 9.50, 0.85, -0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_marcos_infestada", 18.20, 0.9, 0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_lucas_viaduto", 24.70, 1.0, 0.0, wet=0.12)
-    mx.voice_line(vdir, "p1_clara_entregador", 36.00, 0.85, -0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_marcos_visor", 42.40, 1.1, 0.3, wet=0.14)
-    mx.voice_line(vdir, "p1_lucas_cuidado1", 50.75, 1.4, 0.0, wet=0.2)
-    mx.voice_line(vdir, "p1_lucas_cuidado2", 55.50, 1.6, 0.0, wet=0.2)
+    mx.voice_line(vdir, "p1_lucas_sussurro", 2.60, 1.3, 0.0, wet=0.12)
+    mx.voice_line(vdir, "p1_clara_radio", 9.50, 0.67, -0.3, wet=0.14)
+    mx.voice_line(vdir, "p1_marcos_infestada", 18.20, 1.1, 0.3, wet=0.14)
+    mx.voice_line(vdir, "p1_lucas_viaduto", 24.70, 1.16, 0.0, wet=0.12)
+    mx.voice_line(vdir, "p1_clara_entregador", 36.00, 0.64, -0.3, wet=0.14)
+    mx.voice_line(vdir, "p1_marcos_visor", 42.40, 0.98, 0.3, wet=0.14)
+    mx.voice_line(vdir, "p1_lucas_cuidado1", 50.75, 1.7, 0.0, wet=0.2)
+    mx.voice_line(vdir, "p1_lucas_cuidado2", 55.50, 1.9, 0.0, wet=0.2)
     # --------------------------------------------------------------- ambiência
     mx.add("amb", sfx.city_air(60.0), 0, 0.55, 0.0, env="st", wet=0.0)
     mx.add("amb", sfx.lamp_hum(60.0, flicker=True), 0, 0.30, -0.35, env="st", wet=0.05)
@@ -183,13 +183,13 @@ def parte2(vdir):
              door_reached=35.0, clara_grab=36.55, chain_rattle=45.3, lucas_grab=47.0, phone_drop=49.3,
              black=49.75, reboot=52.1, face=52.4, cut=59.82)
     # ------------------------------------------------------------------ vozes
-    mx.voice_line(vdir, "p2_lucas_rua", 0.05, 1.35, 0.0, wet=0.2)
-    mx.voice_line(vdir, "p2_clara_escada", 6.70, 0.95, -0.3, env="ga", wet=0.26)
-    mx.voice_line(vdir, "p2_marcos_socorro", 15.40, 1.55, 0.45, env="ga", wet=0.3)
-    mx.voice_line(vdir, "p2_lucas_chuta", 18.90, 1.55, 0.0, env="ga", wet=0.26)
-    mx.voice_line(vdir, "p2_clara_vaiembora", 37.20, 1.7, -0.4, env="ga", wet=0.3)
-    mx.voice_line(vdir, "p2_lucas_portao", 42.70, 1.7, 0.0, env="ga", wet=0.26)
-    mx.voice_line(vdir, "p2_lucas_zumbi", 52.15, 0.9, 0.0, env="ga", wet=0.4)
+    mx.voice_line(vdir, "p2_lucas_rua", 0.05, 2.1, 0.0, wet=0.2)
+    mx.voice_line(vdir, "p2_clara_escada", 6.70, 0.88, -0.3, env="ga", wet=0.26)
+    mx.voice_line(vdir, "p2_marcos_socorro", 15.40, 1.63, 0.45, env="ga", wet=0.3)
+    mx.voice_line(vdir, "p2_lucas_chuta", 18.90, 1.8, 0.0, env="ga", wet=0.26)
+    mx.voice_line(vdir, "p2_clara_vaiembora", 37.20, 1.3, -0.4, env="ga", wet=0.3)
+    mx.voice_line(vdir, "p2_lucas_portao", 42.70, 1.95, 0.0, env="ga", wet=0.26)
+    mx.voice_line(vdir, "p2_lucas_zumbi", 52.15, 0.99, 0.0, env="ga", wet=0.4)
     # --------------------------------------------------------------- ambiência
     air = sfx.city_air(60.0)
     amb_env = np.interp(np.arange(len(air)) / SR, [0, 2.0, 3.6, 60], [1, 1, 0.0, 0.0]).astype(np.float32)
@@ -200,11 +200,14 @@ def parte2(vdir):
     mx.add("amb", sfx.lamp_hum(60.0, 60, flicker=True), 0, 0.22, 0.2, env="ga", wet=0.05)
     mx.add("mus", sfx.drone(60.0, 49.0), 0, 0.38, 0.0, env="ga", wet=0.2)
     # ----------------------------------------------- a queda e a corrida (rua)
-    mx.add("sfx", sfx.zinc_buckle(2.0)[int(1.1 * SR):], 0.0, 0.9, 0.0, env="st", wet=0.4)
-    mx.add("sfx", sfx.tile_fall(26, 3.4, seed=13), 0.22, 1.0, 0.0, env="st", wet=0.4)
-    mx.add("sfx", sfx.glass_shatter(1.6, 0.8), 0.28, 0.8, -0.2, env="st", wet=0.4)
-    steps(mx, 0.35, 1.8, 3.4, "wet", 31, g=0.8)
+    mx.add("sfx", sfx.zinc_buckle(2.0)[int(1.1 * SR):], 0.0, 0.7, 0.0, env="st", wet=0.4)
+    mx.add("sfx", sfx.tile_fall(26, 3.4, seed=13), 0.22, 0.6, 0.0, env="st", wet=0.4)
+    mx.add("sfx", sfx.glass_shatter(1.6, 0.8), 0.28, 0.45, -0.2, env="st", wet=0.4)
+    steps(mx, 0.35, 1.8, 3.4, "wet", 31, g=0.55)
     breaths(mx, 0.5, 6.0, 0.55, 0.32)
+    # a primeira fala cai sobre o estrondo: abafa os efeitos nos primeiros 1,5 s para a fala ser entendida
+    _n = int(1.5 * SR); _r = np.linspace(0.5, 1.0, _n)[:, None]
+    mx.sfx[:_n] *= _r; mx.send_st[:_n] *= _r[:, 0]
     mx.add("sfx", sfx.glass_door_smash(2.2), 2.05, 1.0, -0.15, env="st", wet=0.35)
     steps(mx, 2.5, 1.4, 3.0, "dry", 32, g=0.75, env="ga")
     # horda lá fora, já na rua

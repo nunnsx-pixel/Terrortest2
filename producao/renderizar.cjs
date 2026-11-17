@@ -27,7 +27,7 @@ const server = http.createServer((req, res) => {
   const t0 = Date.now(); let k = 0;
   for (const it of list) {
     const file = path.join(outDir, `${it.name}.${ext}`);
-    if (!times && fs.existsSync(file) && fs.statSync(file).size > 1000) continue;
+    if (!times && !args.force && fs.existsSync(file) && fs.statSync(file).size > 1000) continue;
     const data = await page.evaluate(({ part, t, png, q }) => window.renderAt(part, t, { q }), { part, t: it.t, png: !!args.png, q: 0.93 });
     fs.writeFileSync(file, Buffer.from(data.split(',')[1], 'base64'));
     k++; if (k % 10 === 0 || times) console.log(`${it.name} (${((Date.now() - t0) / k / 1000).toFixed(2)} s/frame)`);
